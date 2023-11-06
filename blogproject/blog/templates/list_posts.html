@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <h1>Posts:</h1>
+        <ol>
+            {% for post in posts %}
+            <li>    
+                <a href="https://google.com">{{ post.title|capfirst }}</a>
+                <strong>{{ post.get_status_display }}</strong>
+                , Created On: {{ post.created_on|date:"D d M Y" }}
+                , Last updated: {{ post.updated_on }}
+
+            </li>
+            {% endfor %}
+        </ol>
+    </body>
+</html>
