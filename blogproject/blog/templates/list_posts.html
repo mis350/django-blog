@@ -1,10 +1,11 @@
 <html>
     <body>
         <h1>Posts:</h1>
+        PID : {{ pid }}
         <ol>
             {% for post in posts %}
             <li>    
-                <a href="https://google.com">{{ post.title|capfirst }}</a>
+                <a href="{% url 'show_post_by_slug' post.slug %}">{{ post.title|capfirst }}</a>
                 <strong>{{ post.get_status_display }}</strong>
                 , Created On: {{ post.created_on|date:"D d M Y" }}
                 , Last updated: {{ post.updated_on }}

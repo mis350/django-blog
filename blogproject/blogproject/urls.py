@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import list_posts_view #1
+from blog.views import list_posts_view, show_post_view, show_post_slug_view #1
 #from blog import views #2
 
 
@@ -24,4 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('list/', list_posts_view), #1
    # path('list/', views.list_posts_view),#2
+   path('display/<int:pid>/', show_post_view, name="show_post_by_id"),
+   path('show/<slug:s>/', show_post_slug_view, name='show_post_by_slug'),
 ]

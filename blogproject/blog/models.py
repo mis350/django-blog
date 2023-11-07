@@ -15,4 +15,4 @@ class Post(models.Model):
     status = models.IntegerField(default=0, choices=STATUS)
 
     def __str__(self):
-        return f"{self.title} ({self.get_status_display()}))"
+        return f"{self.pk}: {self.title} ({self.get_status_display()}))"
