@@ -5,6 +5,18 @@
        <p>
         {{ post.body }}
        </p>
-       pid = {{ pid }}
+       
+       <h2>Comments:</h2>
+
+       <ol>
+        {% for c in comments %}
+        <li>    
+           <p>  {{ c.comment }} </p>
+           written by {{ c.author }} on {{ c.created_on }}
+        </li>
+        {% empty %}
+        <li>No comments yet!</li>
+        {% endfor %}
+    </ol>
     </body>
 </html>
