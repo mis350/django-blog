@@ -4,7 +4,7 @@ from .models import Post
 # Create your views here.
 
 def list_posts_view(request):
-    p = Post.objects.filter(status=0)
+    p = Post.objects.filter(title__icontains=request.GET.get("q"))
     context = {}
     context['posts'] = p
 
@@ -25,3 +25,10 @@ def show_post_slug_view(request, s):
     context['post'] = p
     context['comments'] = comments
     return render(request, 'show_post.html', context)
+
+def search_post_view(request, q):
+    p = Post.objects.filter(title__icontains=q)
+    context = {}
+    context['posts'] = p
+
+    return render(request, 'list_posts.html', context)
