@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 # from blog.models import Post 
 # Create your views here.
 
+from .forms import PostForm
+
 def list_posts_view(request):
-    p = Post.objects.filter(title__icontains=request.GET.get("q"))
+    p = Post.objects.all()#filter(title__icontains=request.GET.get("q", ""))
     context = {}
     context['posts'] = p
 
@@ -32,3 +34,16 @@ def search_post_view(request, q):
     context['posts'] = p
 
     return render(request, 'list_posts.html', context)
+
+def create_post_view(request):
+
+    form = PostForm(request.POST or None)
+
+    context = {}
+    context['form'] = form
+
+    if form.is_valid():
+        post = form.save()
+        return redirect('show_post_by_id', pid=post.pk)
+        
+    return render(request, "create_post.html", context)
