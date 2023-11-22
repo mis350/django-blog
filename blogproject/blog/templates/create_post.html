@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Create Post</h1>
+    <h1>{{ title }}</h1>
 
-<form action="" method="post">
+<form method="post">
     {% csrf_token %}
     
     {{ form.as_p }}
