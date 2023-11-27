@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.text import slugify
 
+from django.contrib.auth.decorators import login_required
+
+
 from .models import Post
 # from blog.models import Post 
 # Create your views here.
@@ -51,6 +54,7 @@ def search_post_view(request, q):
 
     return render(request, 'list_posts.html', context)
 
+@login_required
 def create_post_view(request):
 
     form = PostForm(request.POST or None)
