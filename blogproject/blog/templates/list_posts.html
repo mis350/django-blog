@@ -10,6 +10,8 @@
                 , Created On: {{ post.created_on|date:"D d M Y" }}
                 , Last updated: {{ post.updated_on }}
 
+                <a href="{% url 'edit_post' post.slug %}">Edit</a>
+                <a href="{% url 'delete_post' post.pk %}">Delete</a>
             </li>
             {% endfor %}
         </ol>

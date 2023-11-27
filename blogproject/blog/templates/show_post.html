@@ -6,6 +6,11 @@
         {{ post.body }}
        </p>
        
+<div>
+    <a href="{% url 'edit_post' post.slug %}">Edit</a>
+    <a href="{% url 'delete_post' post.pk %}">Delete</a>
+</div>
+
        <h2>Comments:</h2>
 
        <ol>

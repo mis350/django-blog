@@ -60,6 +60,7 @@ def create_post_view(request):
 
     context = {}
     context['form'] = form
+    context["title"] = "Create Post"
 
     if form.is_valid():
         post = form.save(commit=False)
@@ -75,15 +76,26 @@ def edit_post_view(request, s):
     form = PostForm(request.POST or None, instance=post)
     context = {}
     context["form"] = form
-    context["title"] = "Edit Post"
-
-    print("*****"*20)
-    print(request.POST)
-    print("*****"*20)
+    # context["title"] = "Edit Post"
 
     if form.is_valid():
         post = form.save()
         return redirect('show_post_by_id', pid=post.pk)
-    else: 
-        print("Invalid!")
+
     return render(request, 'create_post.html', context)
+
+
+def delete_post_view(request, pid):
+    print(f"Post to delete is {pid}")
+    #Post.objects.delete(pk=pid)
+    post = get_object_or_404(Post, pk=pid)
+    #post = Post.objects.get(pk=pid)
+
+    context = {}
+    context["post"] = post
+    if "confirm" in request.GET:
+        post.delete()
+        return redirect("list_post")
+    elif "cancel" in request.GET:
+        return redirect("list_post")
+    return render(request, "confirm.html", context=context) #6

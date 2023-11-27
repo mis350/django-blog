@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from blog.views import (list_posts_view, show_post_view, show_post_slug_view,
-                        search_post_view, create_post_view, edit_post_view) #1
+                        search_post_view, create_post_view, edit_post_view,
+                        delete_post_view) #1
 #from blog import views #2
 
 
@@ -30,4 +31,6 @@ urlpatterns = [
     path('edit/<slug:s>/', edit_post_view, name='edit_post'),
     path('search/<str:q>/', search_post_view, name="search_name"),
     path('create/post/', create_post_view, name="create_post"),
+    path('delete/<int:pid>/', delete_post_view, name='delete_post'),
+
 ]
